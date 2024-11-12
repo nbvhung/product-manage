@@ -1,12 +1,12 @@
 const express = require("express");
-const router = express.Router();
+const route = express.Router();
 
 const controller = require("../../controllers/client/product.controller");
 
-router.get("/", controller.index);
+route.get("/", controller.index);
 
-router.get("/:slugCategory", controller.category);
+route.get("/:slugCategory", controller.category);
 
-router.get("/detail/:slugProduct", controller.detail);
+route.get("/detail/:slugProduct", controller.detail);
 
-module.exports = router     
+module.exports = route;   
