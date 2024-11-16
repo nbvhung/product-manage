@@ -1,5 +1,7 @@
 const categoryMiddleware = require("../../middlewares/client/category.middleware")
 const cartMiddleware = require("../../middlewares/client/cart.middleware");
+const userMiddleware = require("../../middlewares/client/user.middleware");
+const settingMiddleware = require("../../middlewares/client/setting.middleware");
 
 const homeRoutes = require("./home.route");
 const productRoutes = require("./product.route");
@@ -12,6 +14,10 @@ module.exports = (app) => {
     app.use(categoryMiddleware.category); // dùng middleware cho nhanh dùng được cho mọi trang
 
     app.use(cartMiddleware.cardId);
+
+    app.use(userMiddleware.infoUser);
+
+    app.use(settingMiddleware.settingGeneral);
 
     app.use("/",homeRoutes);
     

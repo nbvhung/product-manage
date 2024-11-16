@@ -6,7 +6,7 @@ header.header
             .col-3 
                 .inner-logo 
                     a(href="/")
-                        image(src="/images/logo.jpg",alt="Logo",width="100px",heigth="100px")
+                        image(src=settingGeneral.logo alt="Logo" width="100px" heigth="100px")
 
             .col-5 
                 form(
@@ -37,6 +37,16 @@ header.header
                             a(href=pathProduct) Sản phẩm
                                 +sub-menu(layoutProductsCategory, pathProduct)
                         li
-                            a(href="/cart") Giỏ hàng (#{miniCart ? miniCart.totalQuantity : "0"});
-                        li 
-                            a(href="/user/register") Đăng ký
+                            a(href="/cart") Giỏ hàng (#{miniCart ? miniCart.totalQuantity : "0"})
+                        
+                        //- khi da dang nhap
+                        if(user)
+                            li 
+                                a(href="/user/info") #{user.fullName}
+                            li 
+                                a(href="/user/logout") Đăng xuất
+                        else
+                            li 
+                                a(href="/user/login") Đăng nhập
+                            li 
+                                a(href="/user/register") Đăng ký
