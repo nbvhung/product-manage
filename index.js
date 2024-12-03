@@ -7,6 +7,8 @@ const session = require("express-session");
 const flash = require("express-flash");
 const multer = require("multer");
 const moment = require("moment");
+const http = require("http");
+const { Server } = require("socket.io");
 require("dotenv").config();
 
 const database = require("./config/database.js");
@@ -29,16 +31,24 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
+// SocketIO
+const server = http.createServer(app);
+const io = new Server(server);
+global._io = io; // bien toan cuc
+// End SocketIO 
+
 // flash
 app.use(cookieParser("ILFHIALFHIAEU"));// cài thêm thư viện cookie-parser và express-session
 app.use(session({ cookie: { maxAge: 60000 }}));
 app.use(flash());
 // end flash
 
+
 // TinyMCE
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 // End tinytmce
+
 
 // App local variable
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
@@ -57,6 +67,7 @@ app.get("*", (req, res) => { // *: các trường hợp còn lại
     })
 });
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`App listening on port ${port}`);
 }); 
+

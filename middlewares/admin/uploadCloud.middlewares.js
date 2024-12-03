@@ -9,32 +9,34 @@ cloudinary.config({
 });
 // End cloudinary
 
-module.exports.upload = (req, res, next) => {
-    if(req.file){
-        let streamUpload = (req) => {
-            return new Promise((resolve, reject) => {
-                let stream  = cloudinary.uploader.upload_stream((error, result) =>{
-                    if(result){
-                        resolve(result);
-                    }
-                    else{
-                        reject(result);
-                    }
-                });
 
-                streamifier.createReadStream(req.file.buffer).pipe(stream);
-            });
-        };
+let streamUpload = (buffer) => {
+    return new Promise((resolve, reject) => {
+        let stream  = cloudinary.uploader.upload_stream((error, result) =>{
+            if(result){
+                resolve(result);
+            }
+            else{
+                reject(error);
+            }
+        });
 
-        async function upload(req){
-            let result = await streamUpload(req);
-            // console.log(result.secure_url);
-            req.body[req.file.fieldname] = result.secure_url;
-            next();
-        }
-        upload(req);
-    }
-    else{
-        next();
-    }
+        streamifier.createReadStream(buffer).pipe(stream);
+    });
 };
+
+const uploadToCloudinary = async (buffer) => {
+    let result = await streamUpload(buffer);
+    return result.url;
+}
+
+module.exports.upload = async (req, res, next) => {
+    if(req.file){
+        const result = await uploadToCloudinary(req.file.buffer);
+
+        req.body[req.file.fieldname] = result;
+    }
+    next();
+};
+
+
