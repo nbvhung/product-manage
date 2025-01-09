@@ -466,4 +466,83 @@
 /* end emoji-picker */
 
 
+/* box-user */
+.box-user{
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
 
+.box-user .inner-avatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #f2f2f2;
+    margin-right: 10px;
+}
+
+.box-user .inner-avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.box-user .inner-infor{
+    flex: 1;
+}
+
+.box-user .inner-infor .inner-name{
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.box-user [btn-cancel-friend]{ /* ẩn nút hủy bạn bè */
+    display: none;
+}
+
+.box-user.add [btn-add-friend]{ /* khi có class add ẩn nút thêm bạn bè */
+    display: none;
+}
+
+.box-user.add [btn-cancel-friend]{/* khi có class add hiện nút hủy bạn bè */
+    display: inline-block;
+}
+
+
+.box-user [btn-deleted-friend]{
+    display: none;
+}
+
+.box-user.refuse [btn-accept-friend]{
+    display: none;
+}
+
+.box-user.refuse [btn-refuse-friend]{
+    display: none;
+}
+
+.box-user.refuse [btn-deleted-friend]{
+    display: inline-block;
+}
+
+
+.box-user [btn-accepted-friend]{
+    display: none;
+}
+
+.box-user.accepted [btn-accept-friend]{
+    display: none;
+}
+
+.box-user.accepted [btn-refuse-friend]{
+    display: none;
+}
+
+.box-user.accepted [btn-accepted-friend]{
+    display: inline-block;
+}
+/* end box-user */
