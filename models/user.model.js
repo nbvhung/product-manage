@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema(
         ],
         acceptFriends: Array, // danh sách bạn bè đang đợi mình chấp nhận
         requestFriends: Array, // danh sách bạn bè mình đã gửi lơi mời
+        statusOnline: String,
         status: {
             type: String,
             default: "active"

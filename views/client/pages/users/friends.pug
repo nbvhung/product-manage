@@ -8,13 +8,13 @@ block main
 
         .row 
             .col-12 
-                +box-head("Lời mời đã gửi")
+                +box-head("Danh sách bạn bè")
 
         
-        .row 
-            each user in users
-                .col-6 
-                    div(class="box-user add")
+        .row(data-users-friend) 
+            each user in users  
+                .col-6(user-id=user.id)
+                    div(class="box-user")
                         div(class="inner-avatar")
                             img(
                                 src=(user.avatar ? user.avatar : "/images/avatar.jpg")
@@ -23,14 +23,15 @@ block main
                         div(class="inner-info")
                             div(class="inner-name") #{user.fullName}
                             div(class="inner-buttons")
-                                button(
+                                a(
+                                    href="#"
                                     class="btn btn-sm btn-primary mr-1"
-                                    btn-add-friend=user.id
-                                ) Thêm bạn bè
-                                button(
-                                    class="btn btn-sm btn-secondary mr-1"
-                                    btn-cancel-friend=user.id
-                                ) Hủy lời mời
+                                ) Nhắn tin 
+                        div(
+                            class="inner-status"
+                            status=user.statusOnline
+                        )  <i class="fa-solid fa-circle"></i>
+                            
 
     block script 
         script(type="module", src="/js/users.js") 

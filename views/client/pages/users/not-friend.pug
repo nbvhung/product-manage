@@ -10,25 +10,25 @@ block main
             .col-12 
                 +box-head("Danh sách người dùng")
 
-        .row
-            each user in users
-                .col-6 
+        .row(data-users-not-friend=user.id)
+            each item in users
+                .col-6(user-id=item.id) 
                     div(class="box-user")
                         div(class="inner-avatar")
                             img(
-                                src=(user.avatar ? user.avatar : "/images/avatar.jpg")
-                                alt=user.fullName
+                                src=(item.avatar ? item.avatar : "/images/avatar.jpg")
+                                alt=item.fullName
                             )
-                        div(class="inner infor")
-                            div(class="inner-name") #{user.fullName}
-                            div(class="inner-button")
+                        div(class="inner-info")
+                            div(class="inner-name") #{item.fullName}
+                            div(class="inner-buttons")
                                 button(
                                     class="btn btn-sm btn-primary mr-1"
-                                    btn-add-friend=user.id
+                                    btn-add-friend=item.id
                                 ) Thêm bạn bè
                                 button(
                                     class="btn btn-sm btn-secondary mr-1"
-                                    btn-cancel-friend=user.id
+                                    btn-cancel-friend=item.id
                                 ) Hủy lời mời
 
 

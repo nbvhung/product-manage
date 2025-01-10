@@ -545,4 +545,21 @@
 .box-user.accepted [btn-accepted-friend]{
     display: inline-block;
 }
+
+.active{
+    color: white;
+    background: red;
+}
+
+.box-user .inner-status{
+    font-size: 12px;
+    color:#00d800;
+    opacity: 0; /* ban đầu ẩn đi */
+}
+
+.box-user .inner-status[status="online"]{
+    opacity: 1;
+}
 /* end box-user */
+
+
