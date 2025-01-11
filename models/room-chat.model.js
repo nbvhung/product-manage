@@ -6,7 +6,12 @@ const roomChatSchema = new mongoose.Schema(
         avatar: String,
         typeRoom: String,
         status: String,
-        status: String,
+        users: [
+            {
+                user_id: String,
+                role: String
+            }
+        ],
         deleted: {
             type: Boolean,
             default: false

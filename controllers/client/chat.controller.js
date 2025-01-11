@@ -3,18 +3,18 @@ const User = require("../../models/user.model");
 
 const chatSocket = require("../../socket/client/chat.socket");
 
-// [GET] /chat/ 
+// [GET] /chat/:roomChatId 
 module.exports.index = async (req, res) => {
-    const userId = res.locals.user.id;
-    const fullName = res.locals.user.fullName;
+    const roomChatId = req.params.roomChatId;
 
     // SocketIO
-    chatSocket(res);
+    chatSocket(req, res);
     // End SockIO
 
 
     // Lấy ra data
     const chats = await Chat.find({
+        room_chat_id: roomChatId,
         deleted: false
     });
 
