@@ -7,7 +7,7 @@ module.exports.isAccess = async (req, res, next) => {
     try {
         const isAccessRoomChat = await RoomChat.findOne({
             _id: roomChatId,
-            "user.user_id": userId, // kiểm tra id của các user có trong phòng chat(người khác ko có id phòng thì không thể truy cập mặc dù có link)
+            "users.user_id": userId, // kiểm tra id của các user có trong phòng chat(người khác ko có id phòng thì không thể truy cập mặc dù có link)
             deleted: false
         });
         if(isAccessRoomChat){
